@@ -1,5 +1,5 @@
 import * as mobilenet from '@tensorflow-models/mobilenet';
-import * as tf from '@tensorflow/tfjs';
+// import * as tf from '@tensorflow/tfjs';
 import '@tensorflow/tfjs-backend-webgl';
 import { TbMeat } from "react-icons/tb";
 import { Toaster, toast } from 'sonner'
