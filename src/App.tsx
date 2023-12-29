@@ -50,7 +50,7 @@ function App() {
   }
 
   return (
-    <div className='h-screen w-full flex justify-center items-center bg-[url(./hologram.webp)] bg-cover'>
+    <div className="h-screen w-full flex justify-center items-center bg-[url('/hologram.webp')] bg-cover">
       <div className={`fixed z-10 bg-white h-3/4 w-5/6 max-w-[500px] rounded-xl outline outline-3 duration-300 transition ease-in-out ${isOpen?"flex":"hidden"}`}> 
       <button onClick={()=>setIsOpen(false)}>X</button>
       </div>
