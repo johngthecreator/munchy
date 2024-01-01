@@ -62,8 +62,8 @@ function App() {
             <div className='border-solid border-black border-l-2 p-3'>
               <h2 className='font-black'>MUNCHY</h2>
               <p className=''>PURPLE LIZARD</p>
-              <p className=''>LV. 20</p>
-              <p className=''>FOOD 1/10</p>
+              <p className=''>LV. ???</p>
+              {/* <p className=''>FOOD 1/10</p> */}
             </div>
           </div>
           <div className='p-5'>
