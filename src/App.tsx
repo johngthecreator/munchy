@@ -1,9 +1,9 @@
 import * as mobilenet from '@tensorflow-models/mobilenet';
 import '@tensorflow/tfjs-backend-webgl';
-import { TbMeat } from "react-icons/tb";
-import { Toaster, toast } from 'sonner'
-import { useState } from 'react';
+import { Toaster, toast } from 'sonner';
+import { useEffect, useState } from 'react';
 import { foodItems } from './lib/foodLikes';
+import Menu from './components/Menu';
 
   export interface IModelPredictions {
     [index:number]:{
@@ -15,6 +15,10 @@ import { foodItems } from './lib/foodLikes';
 function App() {
   const [img, setImg] = useState<string|undefined>()
   const [isOpen, setIsOpen] = useState<boolean>(false)
+  useEffect(()=>{
+    toast(<div className='font-black text-3xl text-center w-full'>Tap on Munchy</div>)
+
+  },[])
 
 
   const classifyImage = async () => {
@@ -50,54 +54,48 @@ function App() {
   }
 
   return (
-    <div className="h-screen w-full flex justify-center items-center bg-[url('/hologram.webp')] bg-cover">
-      <div className={`fixed z-10 bg-white h-3/4 w-5/6 max-w-[500px] rounded-xl outline outline-3 duration-300 transition ease-in-out ${isOpen?"flex":"hidden"}`}> 
-      <button onClick={()=>setIsOpen(false)}>X</button>
-      </div>
-      <div className=' h-[350px] w-[300px] rounded-full outline outline-4 py-10 bg-gradient-to-br from-cyan-500 to-blue-500 flex flex-col gap-4 items-center justify-start'>
-        <h1 className='text-3xl font-black text-white'>Munchy</h1>
-        {/* Monster Container */}
-        <div onClick={()=> toast(<div className='font-black text-3xl text-center w-full'>Grrr...</div>)} className='h-32 w-32 p-2 bg-white outline flex flex-col justify-center items-center'>
-          <div className='flex w-full flex-row items-center justify-between font-bold'>
-            <div className='flex items-center'>
-              Lv. 30
-            </div>
-            <div className='flex items-center'>
-              3
-              <TbMeat />
+    <Menu>
+      <div className="h-full w-full flex flex-col justify-between items-center bg-[url('/trees.jpg')] overflow-hidden bg-repeat">
+        <div className={`fixed bottom-36 z-10 bg-white flex-col h-auto w-5/6 max-w-[400px] border-black border-4 border-solid ${isOpen?"flex":"hidden"}`}> 
+          <div className='flex flex-row items-center justify-start border-solid border-b-2 border-black'>
+            <img src='./spark.png' className='h-28'/>
+            <div className='border-solid border-black border-l-2 p-3'>
+              <h2 className='font-black'>MUNCHY</h2>
+              <p className=''>PURPLE LIZARD</p>
+              <p className=''>LV. 20</p>
+              <p className=''>FOOD 1/10</p>
             </div>
           </div>
-          <img src='./spark.gif' className='h-20 w-20' />
-        </div>
-        {/* Image Classification Model Called */}
-        {(img)?(
-          <div className='hidden'>
-            <img onLoad={classifyImage} id="reviewable" src={img} />
+          <div className='p-5'>
+            Found mainly in North America, the elusive Munchy has grown acustom to a diet consisting of strawberries, oranges, bananas, pomegranates, pizza, bagels, cheeseburgers, and hotdogs...
           </div>
-        ):(<p></p>)}
-        <input id="fileCamera" onChange={(e:any)=>preview(e.target.files[0])} className="hidden" accept='image/*' type='file' capture='environment' />
-        {/* Buttons */}
-        <div className='flex flex-row gap-5'>
-          <div className='text-center'>
-            <label htmlFor="fileCamera" className='h-10 w-10 rounded-full flex justify-center items-center bg-white outline'>
+          <div className='grid grid-cols-2 items-center justify-items-center mb-5'>
+            <label htmlFor="fileCamera" className='h-10 w-3/4 shadow-block flex font-black italic justify-center items-center outline'>
+              FEED
             </label>
-            <p className='text-white font-black'>feed</p>
-          </div>
-          <div className='text-center mt-2'>
-            <button onClick={()=>setIsOpen(true)} className='h-10 w-10 rounded-full flex justify-center items-center bg-white outline'>
+            <button 
+            onClick={()=>setIsOpen(false)} 
+            className='h-10 w-3/4 shadow-block flex font-black italic justify-center items-center outline'
+            >
+              EXIT
             </button>
-            <p className='text-white font-black'>stats</p>
-          </div>
-          <div className='text-center'>
-            <label htmlFor="fileCamera" className='h-10 w-10 rounded-full flex justify-center items-center bg-white outline'>
-            </label>
-            <p className='text-white font-black'>feed</p>
           </div>
         </div>
-        {/* Toast Interactions */}
-        <Toaster position='top-center'/>
+          <img 
+          src='./spark.gif' 
+          className="absolute h-20 w-20 animate-moveAround duration-1000 ease-in-out" 
+          onClick={()=>isOpen?setIsOpen(false):setIsOpen(true)}
+          />
+          {/* Image Classification Model Called */}
+          {(img)?(
+            <div className='hidden'>
+              <img onLoad={classifyImage} id="reviewable" src={img} />
+            </div>
+          ):(<p></p>)}
+          <input id="fileCamera" onChange={(e:any)=>preview(e.target.files[0])} className="hidden" accept='image/*' type='file' capture='environment' />
+          <Toaster />
       </div>
-    </div>
+    </Menu>
   )
 }
 
