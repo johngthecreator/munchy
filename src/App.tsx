@@ -67,7 +67,7 @@ function App() {
             </div>
           </div>
           <div className='p-5'>
-            Found mainly in North America, the elusive Munchy has grown acustom to a diet consisting of strawberries, oranges, bananas, pomegranates, pizza, bagels, cheeseburgers, and hotdogs...
+            Found mainly in North America, the elusive Munchy has grown accustom to a diet consisting of strawberries, oranges, bananas, pomegranates, pizza, bagels, cheeseburgers, and hotdogs...
           </div>
           <div className='grid grid-cols-2 items-center justify-items-center mb-5'>
             <label htmlFor="fileCamera" className='h-10 w-3/4 shadow-block flex font-black italic justify-center items-center outline'>
